@@ -1,4 +1,7 @@
+import 'package:counter_app_flutter/blocs/counter_bloc.dart';
+import 'package:counter_app_flutter/views/counter_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
   runApp(
@@ -7,16 +10,22 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  Stream<int> aStreamFunction() async* {
-    // Ham tra ve gia tri nhieu lan thong qua 1 lan goi
-  }
+  // Chay trong Terminal
+  // flutter run --no-sound-null-safety
+
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'This is Counter App!',
-      home: AppBar(
-        title: Text('Counter App', style: TextStyle(fontSize: 20),
+      home: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text('Counter App'),
+        ),
+        body: BlocProvider<CounterBloc>(
+          create: (context) => CounterBloc(), // Hanh dong
+          child: CounterPage(), // Giao dien
         ),
       ),
     );
